@@ -20,7 +20,7 @@
 
     var label = [[CPTextField alloc] initWithFrame:CGRectMakeZero()];
 
-    [label setStringValue:@"Hello World!"];
+    [label setStringValue:@"MD-DM web Site"];
     [label setFont:[CPFont boldSystemFontOfSize:24.0]];
 
     [label sizeToFit];
