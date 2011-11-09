@@ -22,34 +22,42 @@
     var theWindow = [[CPWindow alloc] initWithContentRect:CGRectMakeZero() styleMask:CPBorderlessBridgeWindowMask],
         contentView = [theWindow contentView];
 
-    [contentView setBackgroundColor:[CPColor colorWithRed:0.949 green:0.945 blue:0.929 alpha:1.0]];
 
+    var dashboard = [[CPView alloc] initWithFrame:[contentView bounds]];
+    [dashboard setBackgroundColor:[CPColor colorWithRed:0.949 green:0.945 blue:0.929 alpha:1.0]];
 
-    // var label = [[CPTextField alloc] initWithFrame:CGRectMakeZero()];
-
-    // [label setStringValue:@"MD-DM Web Site"];
-    // [label setFont:[CPFont boldSystemFontOfSize:24.0]];
-
-    // [label sizeToFit];
-
-    // [label setAutoresizingMask:CPViewMinXMargin | CPViewMaxXMargin | CPViewMinYMargin | CPViewMaxYMargin];
-    // [label setCenter:[contentView center]];
-
-    // [contentView addSubview:label];
 
 
     var bodyArea = [[CPView alloc] initWithFrame:CGRectInset(CGRectMake(0, 0, CGRectGetWidth([contentView bounds]), 450), 15.0, 0.0)];
     [bodyArea setBackgroundColor:[CPColor whiteColor]];
-    [contentView addSubview:bodyArea];
+    [dashboard addSubview:bodyArea];
+
+    var label = [[CPTextField alloc] initWithFrame:CGRectMakeZero()];
+    [label setStringValue:@"Digital Mining,\nBest solutions \nfor biggest problems"];
+    // [label setBackgroundColor:[CPColor redColor]];
+    [label setTextColor:[CPColor colorWithRed:1.0 green:0.373 blue:0.341 alpha:1.0]];
+    [label setAlignment:CPLeftTextAlignment];
+    [label setVerticalAlignment:CPTopVerticalTextAlignment];
+    [label setLineBreakMode:CPLineBreakByWordWrapping];
+    [label setFont:[CPFont boldSystemFontOfSize:80.0]];
+    [label sizeToFit];
+    [label setAutoresizingMask:CPViewMinXMargin | CPViewMaxXMargin | CPViewMinYMargin | CPViewMaxYMargin];
+    [label setCenter:[bodyArea center]];
+
+    [bodyArea addSubview:label];
 
 
 
-
-    var detailsArea = [[CPView alloc] initWithFrame:CGRectMake(100, 100, 300, 150)];
+    var detailsArea = [[CPView alloc] initWithFrame:CGRectInset(CGRectMake(0, CGRectGetHeight([bodyArea bounds]), CGRectGetWidth([contentView bounds]), 300), 50.0, 0.0)];
     [detailsArea setBackgroundColor:[CPColor grayColor]];
+    [dashboard addSubview:detailsArea];
 
-    [contentView addSubview:detailsArea];
-
+    [CPScrollView setGlobalScrollerStyle:CPScrollerStyleOverlay]
+    var scrollView = [[CPScrollView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth([contentView bounds]), CGRectGetHeight([contentView bounds]))];
+    [scrollView setAutoresizingMask: CPViewWidthSizable | CPViewHeightSizable];
+    [scrollView setAutohidesScrollers:YES];
+    [scrollView setDocumentView:dashboard];
+    [contentView addSubview:scrollView];
 
     var toolbar = [[MDToolbar alloc] initWithIdentifier:"Details"];
     [toolbar setHeight:150];

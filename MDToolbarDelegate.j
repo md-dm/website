@@ -49,9 +49,11 @@ var SliderToolbarItemIdentifier = "SliderToolbarItemIdentifier",
 			field = [[CPTextField alloc] initWithFrame:CGRectMake(0,0,300,0)];
 
 
-		[field setStringValue:@"MD"];
+		[field setStringValue:@"DM"];
 		[field setEditable:NO];
 		[field setFont:[CPFont fontWithName:"American Typewriter" size:128.0]];
+		[field setTextShadowColor:[CPColor colorWithRed:0.60 green:0.596 blue:0.678 alpha:1.0]];
+		[field setTextShadowOffset:CGSizeMake(10.0, 10.0)];
 		[field sizeToFit];
 		[view addSubview:field];
 
