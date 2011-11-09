@@ -62,19 +62,38 @@ var SliderToolbarItemIdentifier = "SliderToolbarItemIdentifier",
     }
     else if (anItemIdentifier == SliderToolbarItemIdentifier)
     {
-        var mainBundle = [CPBundle mainBundle],
-            image = [[CPImage alloc] initWithContentsOfFile:[mainBundle pathForResource:@"remove.png"] size:CPSizeMake(30, 25)],
-            highlighted = [[CPImage alloc] initWithContentsOfFile:[mainBundle pathForResource:@"removeHighlighted.png"] size:CPSizeMake(30, 25)];
+    	// The toolbar is using a custom view (of class PhotoResizeView)
+		var view = [[CPView alloc] initWithFrame:CGRectMake(0, 0, 400, 150)],
+			field = [[CPTextField alloc] initWithFrame:CGRectMake(0,100,100,40)],
+			separatorField = [[CPTextField alloc] initWithFrame:CGRectMake(100,100,20,40)],
+			knowUsField = [[CPTextField alloc] initWithFrame:CGRectMake(120,100,100,40)];
 
-        [toolbarItem setImage:image];
-        [toolbarItem setAlternateImage:highlighted];
+		// [view setBackgroundColor:[CPColor whiteColor]];
+		// [field setBackgroundColor:[CPColor redColor]];
+		// [separatorField setBackgroundColor:[CPColor blueColor]];
+		// [knowUsField setBackgroundColor:[CPColor greenColor]];
 
-        [toolbarItem setTarget:self];
-        [toolbarItem setAction:@selector(remove:)];
-        [toolbarItem setLabel:"Remove Photo List"];
+		[field setStringValue:@"About Us"];
+		[field setEditable:NO];
+		[field setFont:[CPFont fontWithName:"Times New Roman" size:20.0 italic:YES]];
+		[field setTextColor:[CPColor colorWithRed:0.60 green:0.596 blue:0.678 alpha:1.0]];
+		[view addSubview:field];
 
-        [toolbarItem setMinSize:CGSizeMake(64, 64)];
-        [toolbarItem setMaxSize:CGSizeMake(64, 64)];
+		[separatorField setStringValue:@"/"];
+		[separatorField setEditable:NO];
+		[separatorField setFont:[CPFont fontWithName:"Times New Roman" size:20.0 italic:YES]];
+		[separatorField setTextColor:[CPColor colorWithRed:0.60 green:0.596 blue:0.678 alpha:1.0]];
+		[view addSubview:separatorField];
+
+		[knowUsField setStringValue:@"Know Us"];
+		[knowUsField setEditable:NO];
+		[knowUsField setFont:[CPFont fontWithName:"Times New Roman" size:20.0 italic:YES]];
+		[knowUsField setTextColor:[CPColor colorWithRed:0.60 green:0.596 blue:0.678 alpha:1.0]];
+		[view addSubview:knowUsField];
+
+		[toolbarItem setView:view];
+		[toolbarItem setMinSize:CGSizeMake(300, 150)];
+		[toolbarItem setMaxSize:CGSizeMake(300, 150)];
     }
 
     return toolbarItem;
