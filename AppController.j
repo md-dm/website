@@ -7,7 +7,7 @@
  */
 
 @import <Foundation/CPObject.j>
-
+@import "MDToolbar.j"
 
 
 var SliderToolbarItemIdentifier = "SliderToolbarItemIdentifier",
@@ -36,13 +36,17 @@ var SliderToolbarItemIdentifier = "SliderToolbarItemIdentifier",
 
     [contentView addSubview:label];
 
-    var toolbar = [[CPToolbar alloc] initWithIdentifier:"Details"];
+    var toolbar = [[MDToolbar alloc] initWithIdentifier:"Details"];
+    [toolbar setHeight:100];
     [toolbar setDelegate:self];
     [toolbar setVisible:YES];
-
     [theWindow setToolbar:toolbar];
-
     [theWindow orderFront:self];
+
+  // inspiration taken from http://www.nice-panorama.com/Programmation/cappuccino/Tutorial_CPToolbar.html
+    // var toolbarWindow = [[ToolbarWindow alloc] initWithContentRect:CGRectMake(0,0,500,300) styleMask:CPClosableWindowMask | CPResizableWindowMask];
+    // [toolbarWindow center];
+    // [toolbarWindow orderFront:self];
 
     // Uncomment the following line to turn on the standard menu bar.
     //[CPMenu setMenuBarVisible:YES];
@@ -80,13 +84,10 @@ var SliderToolbarItemIdentifier = "SliderToolbarItemIdentifier",
         [toolbarItem setAction:@selector(remove:)];
         [toolbarItem setLabel:"Remove Photo List"];
 
-        [toolbarItem setMinSize:CGSizeMake(32, 32)];
-        [toolbarItem setMaxSize:CGSizeMake(32, 32)];
+        [toolbarItem setMinSize:CGSizeMake(64, 64)];
+        [toolbarItem setMaxSize:CGSizeMake(64, 64)];
     }
 
     return toolbarItem;
 }
-
-
-
 @end
