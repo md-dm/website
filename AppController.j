@@ -21,7 +21,6 @@
 {
     var theWindow = [[CPWindow alloc] initWithContentRect:CGRectMakeZero() styleMask:CPBorderlessBridgeWindowMask],
         contentView = [theWindow contentView];
-
     var label = [[CPTextField alloc] initWithFrame:CGRectMakeZero()];
 
     [label setStringValue:@"MD-DM Web Site"];
@@ -40,13 +39,5 @@
     [toolbar setVisible:YES];
     [theWindow setToolbar:toolbar];
     [theWindow orderFront:self];
-
-  // inspiration taken from http://www.nice-panorama.com/Programmation/cappuccino/Tutorial_CPToolbar.html
-    // var toolbarWindow = [[ToolbarWindow alloc] initWithContentRect:CGRectMake(0,0,500,300) styleMask:CPClosableWindowMask | CPResizableWindowMask];
-    // [toolbarWindow center];
-    // [toolbarWindow orderFront:self];
-
-    // Uncomment the following line to turn on the standard menu bar.
-    //[CPMenu setMenuBarVisible:YES];
 }
 @end

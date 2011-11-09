@@ -22,7 +22,7 @@
 		console.log(_toolbarView);
 		[_toolbarView setBackgroundColor:[CPColor colorWithRed:0.949 green:0.945 blue:0.929 alpha:1.0]];
 		[_toolbarView setToolbar:self];
-		[_toolbarView setAutoresizingMask:CPViewHeightSizable|CPViewWidthSizable];
+		[_toolbarView setAutoresizingMask:CPViewWidthSizable];
 		[_toolbarView reloadToolbarItems];
 	}
 	return _toolbarView;
