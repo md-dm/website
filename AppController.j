@@ -9,7 +9,7 @@
 @import <Foundation/CPObject.j>
 @import "MDToolbar.j"
 @import "MDToolbarDelegate.j"
-
+@import "MDHoverView.j"
 
 
 @implementation AppController : CPObject
@@ -49,7 +49,14 @@
 
 
     var detailsArea = [[CPView alloc] initWithFrame:CGRectInset(CGRectMake(0, CGRectGetHeight([bodyArea bounds]), CGRectGetWidth([contentView bounds]), 300), 50.0, 0.0)];
-    [detailsArea setBackgroundColor:[CPColor grayColor]];
+    [detailsArea setBackgroundColor:[CPColor lightGrayColor]];
+
+    var hoverArea = [[MDHoverView alloc] initWithFrame:CGRectInset(CGRectMake(0, 0, CGRectGetWidth([detailsArea bounds]) / 3, CGRectGetHeight([detailsArea bounds])), 10.0, 10.0)];
+    [hoverArea setBackgroundColor:[CPColor grayColor]];
+    [detailsArea addSubview:hoverArea];
+
+
+
     [dashboard addSubview:detailsArea];
 
     [CPScrollView setGlobalScrollerStyle:CPScrollerStyleOverlay]
