@@ -1,5 +1,10 @@
 @import <AppKit/CPToolbar.j>
 
+/**!
+
+	Custom implentation of CPToolbar to change heigth and background color.
+
+*/
 
 @implementation MDToolbar : CPToolbar
 {
@@ -14,7 +19,8 @@
 	if(!_toolbarView)
 	{
 		_toolbarView = [[_CPToolbarView alloc] initWithFrame:CPRectMake(0.0, 0.0, 1200.0, _viewHeight)];
-		[_toolbarView setBackgroundColor:[CPColor grayColor]];
+		console.log(_toolbarView);
+		[_toolbarView setBackgroundColor:[CPColor colorWithRed:0.949 green:0.945 blue:0.929 alpha:1.0]];
 		[_toolbarView setToolbar:self];
 		[_toolbarView setAutoresizingMask:CPViewHeightSizable|CPViewWidthSizable];
 		[_toolbarView reloadToolbarItems];
