@@ -39,7 +39,7 @@
     [label setAlignment:CPLeftTextAlignment];
     [label setVerticalAlignment:CPTopVerticalTextAlignment];
     [label setLineBreakMode:CPLineBreakByWordWrapping];
-    [label setFont:[CPFont boldSystemFontOfSize:80.0]];
+    [label setFont:[CPFont fontWithName:'Cookie' size:70]];
     [label sizeToFit];
     [label setAutoresizingMask:CPViewMinXMargin | CPViewMaxXMargin | CPViewMinYMargin | CPViewMaxYMargin];
     [label setCenter:[bodyArea center]];
