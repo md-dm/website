@@ -116,5 +116,8 @@
 - (void)selectedHoverView:(MDHoverView)aHoverView
 {
     console.log(aHoverView);
+    // TODO: following Mediator pattern you need to modified label colors for selected ones
+    // See : https://github.com/md-dm/website/issues/4
+
 }
 @end
