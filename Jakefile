@@ -98,7 +98,7 @@ task("deploy-pages", /*["deploy"],*/ function() {
     // OS.system(buildCmd([["cd", "Build/Release/website/"], ["ls", "-lsa"]]));
 
     var projectName = "website",
-        commitMessage = "\"Pushing a new version of the web site\"",
+        commitMessage = "\"Pushing a new version of the web site\"";
 
     OS.system(buildCmd([["cp", "-R","Build/Release/", "../Pages"]]));
 
