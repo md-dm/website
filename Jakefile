@@ -96,10 +96,13 @@ function printResults(configuration)
 task("deploy-pages", /*["deploy"],*/ function() {
 
     colorPrint("Listing files in Build folder.", "green");
-    OS.system(buildCmd([["cd", "Build/Release/website/"], ["ls", "-lsa"]]));    
+    // OS.system(buildCmd([["cd", "Build/Release/website/"], ["ls", "-lsa"]]));    
 
-    OS.system(buildCmd([["cp", "-r","Build/Release/", "../"], ["ls", "-lsa"]]));    
+    OS.system(buildCmd([["cp", "-R","Build/Release/", "../Pages"], ["ls", "-lsa"]]));    
     
+    colorPrint("Cleaning", "green");
+    OS.system(buildCmd([["rm", "-r", "../Pages"]]));
+    colorPrint("Everything was okay", "green");
 
 });
 
