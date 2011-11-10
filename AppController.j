@@ -49,10 +49,12 @@
 
 
     var detailsArea = [[CPView alloc] initWithFrame:CGRectInset(CGRectMake(0, CGRectGetHeight([bodyArea bounds]), CGRectGetWidth([contentView bounds]), 300), 50.0, 0.0)];
-    [detailsArea setBackgroundColor:[CPColor lightGrayColor]];
+    //[detailsArea setBackgroundColor:[CPColor lightGrayColor]];
 
     var hoverArea = [[MDHoverView alloc] initWithFrame:CGRectInset(CGRectMake(0, 0, CGRectGetWidth([detailsArea bounds]) / 3, CGRectGetHeight([detailsArea bounds])), 10.0, 10.0)];
     [hoverArea setBackgroundColor:[CPColor grayColor]];
+    [hoverArea setAlphaValue:0.5];
+
     [detailsArea addSubview:hoverArea];
 
 
