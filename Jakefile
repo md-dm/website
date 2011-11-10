@@ -95,14 +95,17 @@ function printResults(configuration)
 
 task("deploy-pages", /*["deploy"],*/ function() {
 
-    colorPrint("Listing files in Build folder.", "green");
-    // OS.system(buildCmd([["cd", "Build/Release/website/"], ["ls", "-lsa"]]));    
+    // OS.system(buildCmd([["cd", "Build/Release/website/"], ["ls", "-lsa"]]));
 
-    OS.system(buildCmd([["cp", "-R","Build/Release/", "../Pages"], ["ls", "-lsa"]]));    
-    
-    OS.system(buildCmd([["git", "checkout","gh-pages"]]));    
+    OS.system(buildCmd([["cp", "-R","Build/Release/", "../Pages"]]));
 
-    OS.system(buildCmd([["git", "push","origin","gh-pages"],["git", "checkout","master"]]));    
+    OS.system(buildCmd([["git", "checkout","gh-pages"]]));
+
+    OS.system(buildCmd([["cp", "-R","../Pages/website/*", "."]]));
+
+    OS.system(buildCmd([["git", "add","."], ["git", "commit", "-m", "\"Pushing a new version of the web site\""]]));
+
+    OS.system(buildCmd([["git", "push","origin","gh-pages"],["git", "checkout","master"]]));
 
 
     colorPrint("Cleaning", "green");
