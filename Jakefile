@@ -11,6 +11,7 @@ var ENV = require("system").env,
     JAKE = require("jake"),
     task = JAKE.task,
     FileList = JAKE.FileList,
+    stream = require("narwhal/term").stream,
     app = require("cappuccino/jake").app,
     configuration = ENV["CONFIG"] || ENV["CONFIGURATION"] || ENV["c"] || "Debug",
     OS = require("os");
@@ -91,3 +92,42 @@ function printResults(configuration)
     print(configuration+" app built at path: "+FILE.join("Build", configuration, "website"));
     print("----------------------------");
 }
+
+task("deploy-pages", /*["deploy"],*/ function() {
+
+    colorPrint("Listing files in Build folder.", "green");
+    OS.system(buildCmd([["cd", "Build/Release/website/"], ["ls", "-lsa"]]));    
+
+    OS.system(buildCmd([["cp", "-r","Build/Release/", "../"], ["ls", "-lsa"]]));    
+    
+
+});
+
+function colorize(/* String */ message, /* String */ color)
+{
+    var matches = color.match(/(bold(?: |\+))?(.+)/);
+
+    if (!matches)
+        return;
+
+    message = "\0" + matches[2] + "(" + message + "\0)";
+
+    if (matches[1])
+        message = "\0bold(" + message + "\0)";
+
+    return message;
+}
+
+function colorPrint(/* String */ message, /* String */ color)
+{
+    stream.print(colorize(message, color));
+}
+
+
+function buildCmd(arrayOfCommands)
+{
+    return arrayOfCommands.map(function(cmd) {
+        return cmd.map(OS.enquote).join(" ");
+    }).join(" && ");
+}
+
