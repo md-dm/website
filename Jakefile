@@ -97,16 +97,15 @@ task("deploy-pages", /*["deploy"],*/ function() {
 
     // OS.system(buildCmd([["cd", "Build/Release/website/"], ["ls", "-lsa"]]));
 
+    var projectName = "website",
+        commitMessage = "\"Pushing a new version of the web site\"",
+
     OS.system(buildCmd([["cp", "-R","Build/Release/", "../Pages"]]));
 
-    OS.system(buildCmd([["git", "checkout","gh-pages"], ["ls", "-lsa", "../Pages/website/"], ["pwd"], ["cp", "-R","../Pages/website/", "../website"],["git", "add","."], ["git", "commit", "-m", "\"Pushing a new version of the web site\""],["git", "push","origin","gh-pages"]]));
-
-
-    OS.system(buildCmd([["git", "checkout","master"]]));
-
+    OS.system(buildCmd([["git", "checkout","gh-pages"], ["ls", "-lsa", "../Pages/" + projectName], ["pwd"], ["cp", "-R","../Pages/website/", "../"  + projectName],["git", "add","."], ["git", "commit", "-m", commitMessage],["git", "push","origin","gh-pages"]]));
 
     colorPrint("Cleaning", "green");
-    // OS.system(buildCmd([["rm", "-r", "../Pages"]]));
+    OS.system(buildCmd([["git", "checkout","master"], ["rm", "-r", "../Pages"]]));
     colorPrint("Everything was okay", "green");
 
 });
