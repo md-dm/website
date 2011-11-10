@@ -101,7 +101,7 @@ task("deploy-pages", /*["deploy"],*/ function() {
 
     OS.system(buildCmd([["git", "checkout","gh-pages"]]));
 
-    OS.system(buildCmd([["cp", "-R","../Pages/website/*", "."]]));
+    OS.system(buildCmd([["cp", "-R","../Pages/website/*", "../website"]]));
 
     OS.system(buildCmd([["git", "add","."], ["git", "commit", "-m", "\"Pushing a new version of the web site\""]]));
 
