@@ -99,7 +99,7 @@ task("deploy-pages", /*["deploy"],*/ function() {
 
     OS.system(buildCmd([["cp", "-R","Build/Release/", "../Pages"]]));
 
-    OS.system(buildCmd([["git", "checkout","gh-pages"], ["ls", "-lsa", "../Pages"], ["cp", "-R","../Pages/website/*", "../website"],["git", "add","."], ["git", "commit", "-m", "\"Pushing a new version of the web site\""],["git", "push","origin","gh-pages"]]));
+    OS.system(buildCmd([["git", "checkout","gh-pages"], ["ls", "-lsa", "../"], ["cp", "-R","../Pages/website/*", "../website"],["git", "add","."], ["git", "commit", "-m", "\"Pushing a new version of the web site\""],["git", "push","origin","gh-pages"]]));
 
 
     OS.system(buildCmd([["git", "checkout","master"]]));
