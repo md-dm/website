@@ -28,7 +28,7 @@
 
 
 
-    var bodyArea = [[CPView alloc] initWithFrame:CGRectInset(CGRectMake(0, 0, CGRectGetWidth([contentView bounds]), 450), 15.0, 0.0)];
+    var bodyArea = [[CPView alloc] initWithFrame:CGRectInset(CGRectMake(0, 0, CGRectGetWidth([contentView bounds]), 300), 15.0, 0.0)];
     [bodyArea setBackgroundColor:[CPColor whiteColor]];
     [dashboard addSubview:bodyArea];
 
@@ -49,14 +49,19 @@
 
 
     var detailsArea = [[CPView alloc] initWithFrame:CGRectInset(CGRectMake(0, CGRectGetHeight([bodyArea bounds]), CGRectGetWidth([contentView bounds]), 300), 50.0, 0.0)];
-    //[detailsArea setBackgroundColor:[CPColor lightGrayColor]];
 
-    var hoverArea = [[MDHoverView alloc] initWithFrame:CGRectInset(CGRectMake(0, 0, CGRectGetWidth([detailsArea bounds]) / 3, CGRectGetHeight([detailsArea bounds])), 10.0, 10.0)];
-    [hoverArea setBackgroundColor:[CPColor grayColor]];
-    [hoverArea setAlphaValue:0.5];
+    [detailsArea addSubview:[self createHoverViewWithFrame:CGRectInset(CGRectMake(0, 0, CGRectGetWidth([detailsArea bounds]) / 3, CGRectGetHeight([detailsArea bounds])), 10.0, 10.0)
+                        titleLabel:@"What makes a great app?"
+                        message:@"Lepsun mehis,\nSaluisons niesrs\nluifgetr gtredde"]];
 
-    [detailsArea addSubview:hoverArea];
 
+    [detailsArea addSubview:[self createHoverViewWithFrame:CGRectInset(CGRectMake(CGRectGetWidth([detailsArea bounds]) / 3, 0, CGRectGetWidth([detailsArea bounds]) / 3, CGRectGetHeight([detailsArea bounds])), 10.0, 10.0)
+                        titleLabel:@"The way we work"
+                        message:@"Lepsun mehis,\nSaluisons niesrs\nluifgetr gtredde"]];
+
+    [detailsArea addSubview:[self createHoverViewWithFrame:CGRectInset(CGRectMake(CGRectGetWidth([detailsArea bounds]) / 3 * 2, 0, CGRectGetWidth([detailsArea bounds]) / 3, CGRectGetHeight([detailsArea bounds])), 10.0, 10.0)
+                        titleLabel:@"Meet the makers"
+                        message:@"Lepsun mehis,\nSaluisons niesrs\nluifgetr gtredde"]];
 
 
     [dashboard addSubview:detailsArea];
@@ -74,5 +79,42 @@
     [toolbar setVisible:YES];
     [theWindow setToolbar:toolbar];
     [theWindow orderFront:self];
+}
+- (MDHoverView)createHoverViewWithFrame:(CGRect)aFrame titleLabel:(CPString)aTitleLabel message:(CPString)aMessage
+{
+    var hoverArea = [[MDHoverView alloc] initWithFrame:aFrame];
+
+    [hoverArea setAlphaValue:0.5];
+    [hoverArea setTarget:self];
+    [hoverArea setAction:@selector(selectedHoverView:)];
+
+    var titleLabel = [[CPTextField alloc] initWithFrame:CGRectMakeZero()];
+    [titleLabel setStringValue:aTitleLabel];
+    [titleLabel setTextColor:[CPColor colorWithRed:0.60 green:0.596 blue:0.678 alpha:1.0]];
+    [titleLabel setAlignment:CPLeftTextAlignment];
+    [titleLabel setVerticalAlignment:CPTopVerticalTextAlignment];
+    [titleLabel setLineBreakMode:CPLineBreakByWordWrapping];
+    [titleLabel setFont:[CPFont fontWithName:"Times New Roman" size:24.0 italic:YES]];
+    [titleLabel sizeToFit];
+    [titleLabel setAutoresizingMask:CPViewMinXMargin | CPViewMaxXMargin | CPViewMinYMargin | CPViewMaxYMargin];
+    [hoverArea addSubview:titleLabel];
+
+    var messageLabel = [[CPTextField alloc] initWithFrame:CGRectMake(0,CGRectGetHeight([titleLabel bounds]),CGRectGetWidth(aFrame),0)];
+    [messageLabel setStringValue:aMessage];
+    [messageLabel setTextColor:[CPColor colorWithRed:0.60 green:0.596 blue:0.678 alpha:1.0]];
+    [messageLabel setAlignment:CPLeftTextAlignment];
+    [messageLabel setVerticalAlignment:CPTopVerticalTextAlignment];
+    [messageLabel setLineBreakMode:CPLineBreakByWordWrapping];
+    [messageLabel setFont:[CPFont fontWithName:"Arial" size:16.0 italic:NO]];
+    [messageLabel sizeToFit];
+    [messageLabel setAutoresizingMask:CPViewMinXMargin | CPViewMaxXMargin | CPViewMinYMargin | CPViewMaxYMargin];
+    [hoverArea addSubview:messageLabel];
+
+    return hoverArea;
+}
+
+- (void)selectedHoverView:(MDHoverView)aHoverView
+{
+    console.log(aHoverView);
 }
 @end
