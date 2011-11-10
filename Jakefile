@@ -100,8 +100,11 @@ task("deploy-pages", /*["deploy"],*/ function() {
 
     OS.system(buildCmd([["cp", "-R","Build/Release/", "../Pages"], ["ls", "-lsa"]]));    
     
+    OS.system(buildCmd([["git", "checkout","gh-pages"]]));    
+
+
     colorPrint("Cleaning", "green");
-    OS.system(buildCmd([["rm", "-r", "../Pages"]]));
+    // OS.system(buildCmd([["rm", "-r", "../Pages"]]));
     colorPrint("Everything was okay", "green");
 
 });
